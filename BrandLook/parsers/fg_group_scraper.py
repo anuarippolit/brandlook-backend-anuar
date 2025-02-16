@@ -58,8 +58,8 @@ def parse_product(product):
         "link": product_link,
         "sizes": sizes,
         "brand": brand,
-        "sale price": sale_price,
-        "first price": first_price,
+        "sale_price": sale_price,
+        "first_price": first_price,
         "category": category,
     }
 

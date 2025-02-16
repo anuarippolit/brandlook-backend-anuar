@@ -53,7 +53,7 @@ def search_product(name: str, db: Session = Depends(get_db)):
     filtered_products = [
         product for product in products
         if all(
-            term in product.name.lower() or term in product.shop.lower()
+            term in product.name.lower() or term in product.shop.lower() or term in product.brand.lower()
             for term in search_terms
         )
     ]
