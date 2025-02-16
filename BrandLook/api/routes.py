@@ -11,7 +11,7 @@ app = FastAPI()
 # ✅ FIX: Add CORS to allow frontend requests
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000"],  # Allow frontend to access API
+    allow_origins=["*"],  # Allow frontend to access API
     allow_credentials=True,
     allow_methods=["*"],  # Allow all HTTP methods (GET, POST, etc.)
     allow_headers=["*"],  # Allow all headers
