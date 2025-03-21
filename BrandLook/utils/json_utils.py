@@ -7,10 +7,17 @@ def save_to_json(data, filename='data/scraped_data.json'):
     """
     Сохраняет данные в JSON. Если файл существует, добавляет в него данные.
     """
+    # Convert the relative path to an absolute path
+    base_dir = os.path.dirname(os.path.abspath(__file__))  # Gets `BrandLook/utils/`
+    file_path = os.path.join(base_dir, filename)
+
+    # Ensure the `data/` folder exists before writing
+    os.makedirs(os.path.dirname(file_path), exist_ok=True)
+
     try:
         # Проверяем, существует ли файл и содержит ли он данные
-        if os.path.exists(filename) and os.path.getsize(filename) > 0:
-            with open(filename, 'r', encoding='utf-8') as f:
+        if os.path.exists(file_path) and os.path.getsize(file_path) > 0:
+            with open(file_path, 'r', encoding='utf-8') as f:
                 existing_data = json.load(f)  # Загружаем существующие данные
         else:
             existing_data = []  # Если файла нет или он пуст, создаём новый список
@@ -21,8 +28,12 @@ def save_to_json(data, filename='data/scraped_data.json'):
     existing_data.extend(data)
 
     # Сохраняем обновлённые данные обратно в файл
-    with open(filename, 'w', encoding='utf-8') as f:
+    with open(file_path, 'w', encoding='utf-8') as f:
         json.dump(existing_data, f, indent=4, ensure_ascii=False)
+
+    print(f"✅ Data successfully saved to {file_path}")
+
+
 
 def load_from_json(filename='data/scraped_data.json'):
     """
